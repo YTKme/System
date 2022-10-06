@@ -13,7 +13,9 @@ param (
 
 $ErrorActionPreference = 'Stop'
 
-Write-Verbose 'Entering SetUp.ps1'
+$Filename = 'SetUp.ps1'
+
+Write-Verbose "Entering $Filename"
 
 function Show-Color {
     Write-Host 'Color Test: Black (Do Not Use)' -ForegroundColor Black
@@ -36,4 +38,4 @@ function Show-Color {
 
 if ($ShowColor) { Show-Color }
 
-Write-Verbose 'Leaving SetUp.ps1'
+Write-Verbose "Leaving $Filename"
