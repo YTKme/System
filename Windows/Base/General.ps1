@@ -20,6 +20,8 @@ $ErrorActionPreference = 'Stop'
 
 $Filename = 'General.ps1'
 
+Write-Verbose "Entering $Filename"
+
 function Set-Recycle-Bin {
     [CmdletBinding(DefaultParameterSetName='Default')]
     param(
@@ -43,8 +45,6 @@ function Set-Recycle-Bin {
         Write-Host 'Recycle Bin Hide'
     }
 }
-
-Write-Verbose "Entering $Filename"
 
 # Recycle Bin
 if ($PSBoundParameters.ContainsKey('RecycleBin')) {
