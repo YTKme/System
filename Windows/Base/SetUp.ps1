@@ -17,6 +17,8 @@ $Filename = 'SetUp.ps1'
 
 Write-Verbose "Entering $Filename"
 
+# Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope Process
+
 function Show-Color {
     Write-Host 'Color Test: Black (Do Not Use)' -ForegroundColor Black
     Write-Host 'Color Test: Dark Blue (Do Not Use)' -ForegroundColor DarkBlue
