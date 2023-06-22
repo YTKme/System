@@ -18,6 +18,29 @@ $Filename = 'UserAccountControl.ps1'
 
 Write-Verbose "Entering $Filename"
 
+# Deafult
+$DefaultNotify = @{
+    ConsentPromptBehaviorAdmin   = 5
+    ConsentPromptBehaviorUser    = 3
+    dontdisplaylastusername      = 0
+    DSCAutomationHostEnabled     = 2
+    EnableCursorSuppression      = 1
+    EnableFullTrustStartupTasks  = 2
+    EnableInstallerDetection     = 1
+    EnableLUA                    = 1
+    EnableSecureUIAPaths         = 1
+    EnableUIADesktopToggle       = 0
+    EnableUwpStartupTasks        = 2
+    EnableVirtualization         = 1
+    PromptOnSecureDesktop        = 1
+    scforceoption                = 0
+    shutdownwithoutlogon         = 1
+    SupportFullTrustStartupTasks = 1
+    SupportUwpStartupTasks       = 1
+    undockwithoutlogon           = 1
+    ValidateAdminCodeSignatures  = 0
+}
+
 function Set-Notify {
     [CmdletBinding(DefaultParameterSetName='Default')]
     param(
