@@ -1,4 +1,4 @@
-# 
+#
 
 # Source: https://live.paloaltonetworks.com/t5/globalprotect-discussions/globalprotect-blocks-the-network-traffic-of-wsl2/m-p/507821/highlight/true#M2955
 
@@ -11,4 +11,10 @@ $WSLGateway = $WSLRoute.split()[2]
 $InterfaceIndex = Get-NetRoute -DestinationPrefix $WSLGateway/32 | Select-Object -ExpandProperty "IfIndex"
 $RouteMetric = Get-NetRoute -DestinationPrefix $WSLGateway/32 | Select-Object -ExpandProperty "RouteMetric"
 
-route ADD $WSLAddress MASK 255.255.255.255 $WSLAddress METRIC $RouteMetric IF $InterfaceIndex
+Write-Host "WSL Address: $WSLAddress"
+Write-Host "Route Metric: $RouteMetric"
+Write-Host "Interface Index: $InterfaceIndex"
+
+Write-Host "Command: route ADD $WSLAddress MASK 255.255.255.255 $WSLAddress METRIC $RouteMetric IF $InterfaceIndex"
+Write-Host "Administrator Command: powershell.exe Start-Process powershell -Verb runAs"
+# route ADD $WSLAddress MASK 255.255.255.255 $WSLAddress METRIC $RouteMetric IF $InterfaceIndex
