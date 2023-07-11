@@ -18,7 +18,7 @@ $Filename = 'UserAccountControl.ps1'
 
 Write-Verbose "Entering $Filename"
 
-# Deafult
+# Default
 $DefaultNotify = @{
     ConsentPromptBehaviorAdmin   = 5
     ConsentPromptBehaviorUser    = 3
@@ -33,6 +33,75 @@ $DefaultNotify = @{
     EnableUwpStartupTasks        = 2
     EnableVirtualization         = 1
     PromptOnSecureDesktop        = 1
+    scforceoption                = 0
+    shutdownwithoutlogon         = 1
+    SupportFullTrustStartupTasks = 1
+    SupportUwpStartupTasks       = 1
+    undockwithoutlogon           = 1
+    ValidateAdminCodeSignatures  = 0
+}
+
+# Always
+$AlwaysNotify = @{
+    ConsentPromptBehaviorAdmin   = 2
+    ConsentPromptBehaviorUser    = 3
+    dontdisplaylastusername      = 0
+    DSCAutomationHostEnabled     = 2
+    EnableCursorSuppression      = 1
+    EnableFullTrustStartupTasks  = 2
+    EnableInstallerDetection     = 1
+    EnableLUA                    = 1
+    EnableSecureUIAPaths         = 1
+    EnableUIADesktopToggle       = 0
+    EnableUwpStartupTasks        = 2
+    EnableVirtualization         = 1
+    PromptOnSecureDesktop        = 1
+    scforceoption                = 0
+    shutdownwithoutlogon         = 1
+    SupportFullTrustStartupTasks = 1
+    SupportUwpStartupTasks       = 1
+    undockwithoutlogon           = 1
+    ValidateAdminCodeSignatures  = 0
+}
+
+# No Dim
+$NoDimNotify = @{
+    ConsentPromptBehaviorAdmin   = 5
+    ConsentPromptBehaviorUser    = 3
+    dontdisplaylastusername      = 0
+    DSCAutomationHostEnabled     = 2
+    EnableCursorSuppression      = 1
+    EnableFullTrustStartupTasks  = 2
+    EnableInstallerDetection     = 1
+    EnableLUA                    = 1
+    EnableSecureUIAPaths         = 1
+    EnableUIADesktopToggle       = 0
+    EnableUwpStartupTasks        = 2
+    EnableVirtualization         = 1
+    PromptOnSecureDesktop        = 0
+    scforceoption                = 0
+    shutdownwithoutlogon         = 1
+    SupportFullTrustStartupTasks = 1
+    SupportUwpStartupTasks       = 1
+    undockwithoutlogon           = 1
+    ValidateAdminCodeSignatures  = 0
+}
+
+# Never
+$NeverNotify = @{
+    ConsentPromptBehaviorAdmin   = 0
+    ConsentPromptBehaviorUser    = 3
+    dontdisplaylastusername      = 0
+    DSCAutomationHostEnabled     = 2
+    EnableCursorSuppression      = 1
+    EnableFullTrustStartupTasks  = 2
+    EnableInstallerDetection     = 1
+    EnableLUA                    = 1
+    EnableSecureUIAPaths         = 1
+    EnableUIADesktopToggle       = 0
+    EnableUwpStartupTasks        = 2
+    EnableVirtualization         = 1
+    PromptOnSecureDesktop        = 0
     scforceoption                = 0
     shutdownwithoutlogon         = 1
     SupportFullTrustStartupTasks = 1
@@ -74,6 +143,9 @@ function Set-Notify {
 
     function Set-Notify-Never {
         Write-Host 'Set User Account Control Notify Never'
+        $NeverNotify.GetEnumerator() | ForEach-Object {
+            Write-Host "Record: $($_.Key), $($_.Value)"
+        }
         # Set-ItemProperty `
         # -Path 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System' `
         # -Name 'ConsentPromptBehaviorAdmin' `
