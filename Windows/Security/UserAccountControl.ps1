@@ -126,35 +126,52 @@ function Set-Notify {
     )
 
     function Set-Notify-Always {
-        Write-Host 'Set User Account Control Notify Always'
-        Write-Host 'Set User Account Control Notify Always Complete'
+        Write-Host 'Set User Account Control Notify Always' -ForegroundColor Cyan
+        $AlwaysNotify.GetEnumerator() | ForEach-Object {
+            Write-Host "Set Item Property: $($_.Key), $($_.Value)"
+            Set-ItemProperty `
+            -Path 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System' `
+            -Name $_.Key `
+            -Value $_.Value
+        }
+        Write-Host 'Set User Account Control Notify Always Complete' -ForegroundColor Green
     }
 
     # Default
     function Set-Notify-Dim {
-        Write-Host 'Set User Account Control Notify Dim'
-        Write-Host 'Set User Account Control Notify Dim Complete'
+        Write-Host 'Set User Account Control Notify Dim' -ForegroundColor Cyan
+        $DefaultNotify.GetEnumerator() | ForEach-Object {
+            Write-Host "Set Item Property: $($_.Key), $($_.Value)"
+            Set-ItemProperty `
+            -Path 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System' `
+            -Name $_.Key `
+            -Value $_.Value
+        }
+        Write-Host 'Set User Account Control Notify Dim Complete' -ForegroundColor Green
     }
 
     function Set-Notify-NoDim {
-        Write-Host 'Set User Account Control Notify No Dim'
-        Write-Host 'Set User Account Control Notify No Dim Complete'
+        Write-Host 'Set User Account Control Notify No Dim' -ForegroundColor Cyan
+        $NoDimNotify.GetEnumerator() | ForEach-Object {
+            Write-Host "Set Item Property: $($_.Key), $($_.Value)"
+            Set-ItemProperty `
+            -Path 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System' `
+            -Name $_.Key `
+            -Value $_.Value
+        }
+        Write-Host 'Set User Account Control Notify No Dim Complete' -ForegroundColor Green
     }
 
     function Set-Notify-Never {
-        Write-Host 'Set User Account Control Notify Never'
+        Write-Host 'Set User Account Control Notify Never' -ForegroundColor Cyan
         $NeverNotify.GetEnumerator() | ForEach-Object {
-            Write-Host "Record: $($_.Key), $($_.Value)"
+            Write-Host "Set Item Property: $($_.Key), $($_.Value)"
+            Set-ItemProperty `
+            -Path 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System' `
+            -Name $_.Key `
+            -Value $_.Value
         }
-        # Set-ItemProperty `
-        # -Path 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System' `
-        # -Name 'ConsentPromptBehaviorAdmin' `
-        # -Value 0
-        # Set-ItemProperty `
-        # -Path 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System' `
-        # -Name 'PromptOnSecureDesktop' `
-        # -Value 0
-        Write-Host 'Set User Account Control Notify Never Complete'
+        Write-Host 'Set User Account Control Notify Never Complete' -ForegroundColor Green
     }
 
     if ($Default) {
