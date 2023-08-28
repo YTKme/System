@@ -1,0 +1,3 @@
+[submodule "unix/home"]
+	path = unix/home
+	url = git@github.com:YTKme/dotfiles.git
