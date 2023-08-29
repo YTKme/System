@@ -3,6 +3,7 @@
 ############
 
 server {
+<<<<<<< HEAD
     if ($host = gunicorn.lcl) {
         return 301 https://$host$request_uri;
     }
@@ -48,12 +49,34 @@ server {
 
     # Client Error
     error_page 404 /404.html;
+=======
+    # 
+    # listen 80 default_server;
+    # listen [::]:80 default_server;
+    listen 443 default_server;
+    server_name localhost.lcl www.localhost.lcl;
+
+    root /var/www/gruis-default;
+
+    index index.html index.htm;
+
+    location / {
+        try_files $uri $uri/ =404;
+    }
+
+    # Client Error
+    error_page   404              /404.html;
+>>>>>>> 50b17d8 (Update structure for repository)
     location = /404.html {
         internal;
     }
 
     # Server Error
+<<<<<<< HEAD
     error_page 500 502 503 504 /50x.html;
+=======
+    error_page   500 502 503 504  /50x.html;
+>>>>>>> 50b17d8 (Update structure for repository)
     location = /50x.html {
         internal;
     }
