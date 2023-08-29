@@ -1,0 +1,20 @@
+{
+    "breadcrumbs.enabled": true,
+    "editor.rulers": [
+        72,
+        80,
+        120
+    ],
+    "editor.suggestSelection": "first",
+    "editor.wordWrap": "off",
+    "terminal.integrated.shell.osx": "/bin/bash",
+    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+    "[json]": {
+        "editor.defaultFormatter": "vscode.json-language-features"
+    },
+    "[markdown]": {
+        "editor.wordWrap": "off"
+    },
+    "telemetry.telemetryLevel": "crash",
+    "files.eol": "\n"
+}

@@ -1,0 +1,82 @@
+## MPlayer Configuration
+
+## It's better to leave this enabled on Windows, since the console is slow.
+quiet=yes
+#really-quiet=1
+
+## Frame dropping
+#framedrop=yes
+
+## drive letter of your DVD
+#dvd-device=d:
+
+## Uncomment this for AC-3 passthrough.
+#afm=hwac3
+
+## Multithreading
+lavdopts=threads=2
+
+## VIDEO ##
+## You can use the DirectX or OpenGL video output, default is directx.
+#vo=xv #Linux
+#vo=directx #Windows
+vo=direct3d #Vista/7
+#vo=sdl
+## Old configuration test for Vista/7
+#vo=gl
+#vo=gl2
+#vo=gl2:yuv=3
+#vo=gl2:yuv=2
+priority=realtime
+
+## video filtering and postprocessing
+## eq is useful if your video card does not support video overlay.
+#vf=pp,eq
+#vf=eq,pp=lb/hb/vb
+## This sets the postprocessing into overdrive using all possible spare cpu cycles to make the movie look better.
+#autoq=100
+#vf=pp=de,hqdn3d
+
+## AUDIO ##
+#ao=pulse
+#ao=pulse:device=hw=1.3
+#ao=alsa:device=hw=1.3
+#af=volume=+10:0
+#af=volnorm
+
+## A/V Sync
+#mc=0.2
+#autosync=30
+
+## DISPLAY ##
+#monitoraspect=16:9
+#geometry=0%:0%
+#geometry=100%:0%
+geometry=1920:0
+#geometry=-1920:0%
+#ontop=1
+#fs=0
+dr=1
+#adapter=3
+
+## SUBTITLE ##
+#font="C:/WINDOWS/Fonts/ARIALUNI.ttf"
+#subfont-autoscale=2 #Font-Size
+#subfont-text-scale=3 #(default: 5)
+#subfont-osd-scale=6 #(default: 6)
+
+## Set subtitle file encoding.
+unicode=yes
+utf8=yes
+
+ass=1
+sid=0
+#aid=1
+
+## MISCELLANEOUS ##
+double=yes #Double-Buffering
+cache=8192
+#vc=coreavc
+
+## SCREENSHOT ##
+#vf-add=screenshot
