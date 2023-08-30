@@ -3,28 +3,57 @@
 ############
 
 server {
+    if ($host = gunicorn.lcl) {
+        return 301 https://$host$request_uri;
+    }
+
+    if ($host = www.gunicorn.lcl) {
+        return 301 https://$host$request_uri;
+    }
+
+    listen 80;
+    listen [::]:80;
+
+    server_name gunicorn.lcl www.gunicorn.lcl;
+}
+
+server {
     # 
     # listen 80 default_server;
     # listen [::]:80 default_server;
-    listen 443 default_server;
-    server_name localhost.lcl www.localhost.lcl;
+    listen 443 ssl default_server;
 
-    root /var/www/gruis-default;
+    # SSL
+    ssl_certificate     /etc/ssl/certs/gunicorn.pem;
+    ssl_certificate_key /etc/ssl/private/gunicorn.key;
 
-    index index.html index.htm;
+    server_name gunicorn.lcl www.gunicorn.lcl;
+
+    root /var/www/gunicorn-default;
+
+    # Log
+    access_log /var/log/nginx/gunicorn.access.log main;
+    error_log  /var/log/nginx/gunicorn.error.log;
 
     location / {
         try_files $uri $uri/ =404;
+        index index.html index.htm;
+
+        # Allow Private Network (RFC 1918)
+        allow 10.0.0.0/8;
+        allow 172.16.0.0/12;
+        allow 192.168.0.0/16;
+        deny  all;
     }
 
     # Client Error
-    error_page   404              /404.html;
+    error_page 404 /404.html;
     location = /404.html {
         internal;
     }
 
     # Server Error
-    error_page   500 502 503 504  /50x.html;
+    error_page 500 502 503 504 /50x.html;
     location = /50x.html {
         internal;
     }
