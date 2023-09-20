@@ -1,20 +1,36 @@
 {
     "breadcrumbs.enabled": true,
+    "files.eol": "\n",
+    "files.insertFinalNewline": true,
+    "workbench.startupEditor": "none",
+    "editor.inlineSuggest.enabled": true,
+    "editor.insertSpaces": true,
     "editor.rulers": [
         72,
         80,
         120
     ],
-    "editor.suggestSelection": "first",
     "editor.wordWrap": "off",
+    "files.exclude": {
+        "**/.git": false,
+        "**/.svn": false,
+        "**/.hg": false,
+        "**/CVS": false,
+        "**/.DS_Store": false,
+        "**/Thumbs.db": false
+    },
+    "github.copilot.enable": {
+        "*": true,
+        "plaintext": true,
+        "markdown": true,
+        "scminput": false
+    },
+    "telemetry.telemetryLevel": "crash",
     "terminal.integrated.shell.osx": "/bin/bash",
-    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
     "[json]": {
         "editor.defaultFormatter": "vscode.json-language-features"
     },
     "[markdown]": {
         "editor.wordWrap": "off"
-    },
-    "telemetry.telemetryLevel": "crash",
-    "files.eol": "\n"
+    }
 }
