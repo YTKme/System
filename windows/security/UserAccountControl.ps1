@@ -7,7 +7,7 @@
 # Command Parameter
 param (
     # Notify
-    [Parameter(Mandatory=$false)]
+    [Parameter(Mandatory=$true)]
     [ValidateSet('Default', 'Always', 'Dim', 'NoDim', 'Never')]
     [string]$Notify
 )
