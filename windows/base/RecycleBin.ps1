@@ -6,8 +6,21 @@
 
 # Command Parameter
 param (
-    # Notify
-    [Parameter(Mandatory=$false)]
-    [ValidateSet('Default', 'Always', 'Dim', 'NoDim', 'Never')]
-    [string]$Notify
+    # State
+    [Parameter(Mandatory=$true)]
+    [ValidateSet('Default', 'Show', 'Hide')]
+    [string]$State
 )
+
+$ErrorActionPreference = 'Stop'
+
+$Filename = 'RecycleBin.ps1'
+
+Write-Verbose "Entering $Filename"
+
+# Default
+$DefaultState = @{
+    ConsentPromptBehaviorAdmin = 5
+}
+
+Write-Verbose "Leaving $Filename"
