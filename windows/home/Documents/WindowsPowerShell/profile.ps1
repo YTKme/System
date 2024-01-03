@@ -48,6 +48,8 @@ Function Set-Git-Configuration-self {
     git config core.filemode false
     git config user.email "email@localhost.lcl"
     git config user.name "Self"
+    git config core.eol lf
+    git config core.autocrlf input
 }
 
 Write-Host "End Profile: $Filename" -ForegroundColor Cyan
