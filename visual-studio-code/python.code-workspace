@@ -1,0 +1,12 @@
+{
+    "settings": {
+        "editor.codeActionsOnSave": {
+            "source.organizeImports": true
+        },
+        "editor.formatOnSave": true,
+        "editor.formatOnSaveMode": "file",
+        "python.analysis.typeCheckingMode": "strict",
+        "python.linting.enabled": true,
+        "python.formatting.provider": "autopep8"
+    }
+}
