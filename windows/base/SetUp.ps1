@@ -38,6 +38,11 @@ function Show-Color {
     Write-Host 'Color Test: White' -ForegroundColor White
 }
 
+function Show-Computer {
+    Write-Host "Core: $((Get-CimInstance Win32_Processor).NumberOfCores)"
+    Write-Host "Processor: $((Get-CimInstance Win32_Processor).NumberOfLogicalProcessors)"
+}
+
 if ($ShowColor) { Show-Color }
 
 Write-Verbose "Leaving $Filename"
