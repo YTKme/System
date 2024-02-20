@@ -1,8 +1,5 @@
 {
     "breadcrumbs.enabled": true,
-    "files.eol": "\n",
-    "files.insertFinalNewline": true,
-    "workbench.startupEditor": "none",
     "editor.inlineSuggest.enabled": true,
     "editor.insertSpaces": true,
     "editor.rulers": [
@@ -11,6 +8,9 @@
         120
     ],
     "editor.wordWrap": "off",
+    "explorer.compactFolders": false,
+    "files.eol": "\n",
+    "files.insertFinalNewline": true,
     "files.exclude": {
         "**/.git": false,
         "**/.svn": false,
@@ -20,6 +20,7 @@
         "**/Thumbs.db": false
     },
     "files.trimTrailingWhitespace": true,
+    "workbench.startupEditor": "none",
     "github.copilot.enable": {
         "*": true,
         "plaintext": true,
