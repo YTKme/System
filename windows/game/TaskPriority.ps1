@@ -120,24 +120,13 @@ function Set-Priority {
     function Set-Priority-High {
         Write-Host 'Set GENSHIN IMPACT Priority High' -ForegroundColor Cyan
         $Name = 'CpuPriorityClass'
-        if(Test-Path -Path $PriorityPath) {
-            $RegistryPath = Get-Item -Path $PriorityPath
-            if ($RegistryPath.GetValueNames() -contains $Name) {
-                $HighPriority.GetEnumerator() | ForEach-Object {
-                    Write-Host "Set Item Property: $($_.Key), $($_.Value)"
-                    Set-ItemProperty `
-                    -Path $PriorityPath `
-                    -Name $_.Key `
-                    -Value $_.Value
-                }
-            } else {
-                $HighPriority.GetEnumerator() | ForEach-Object {
-                    Write-Host "New Item Property: $($_.Key), $($_.Value)"
-                    New-ItemProperty `
-                    -Path $PriorityPath `
-                    -Name $_.Key `
-                    -Value $_.Value
-                }
+        if (-Not (Test-Path -Path $PriorityPath)) {
+            $HighPriority.GetEnumerator() | ForEach-Object {
+                Write-Host "New Item Property: $($_.Key), $($_.Value)"
+                New-ItemProperty `
+                -Path $PriorityPath `
+                -Name $_.Key `
+                -Value $_.Value
             }
         } else {
             Write-Host "Path: $PriorityPath" -ForegroundColor Cyan
