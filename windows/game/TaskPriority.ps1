@@ -1,5 +1,5 @@
 #
-# Filename: GENSHINIMPACT.ps1
+# Filename: TaskPriority.ps1
 #
 
 [CmdletBinding()]
@@ -7,18 +7,18 @@
 # Command Parameter
 param (
     # Priority
-    [Parameter(Mandatory=$true)]
+    [Parameter(Mandatory=$false)]
     [ValidateSet('Default', 'Realtime', 'High', 'AboveNormal', 'Normal', 'BelowNormal', 'Low')]
     [string]$Priority
 )
 
 $ErrorActionPreference = 'Stop'
 
-$Filename = 'GENSHINIMPACT.ps1'
+$Filename = 'TaskPriority.ps1'
 
 Write-Verbose "Entering $Filename"
 
-$PriorityPath = 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\GenshinImpact.exe\PerfOptions'
+$RegistryPath = 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\GenshinImpact.exe\PerfOptions'
 
 # Low Priority
 $LowPriority = @{
@@ -43,6 +43,40 @@ $AboveNormalPriority = @{
 # High Priority
 $HighPriority = @{
     CpuPriorityClass = 00000003
+}
+
+function Set-Registry-Data {
+    param (
+        # Path
+        [Parameter(Mandatory=$true)]
+        [string]$Path,
+        # Data
+        [Parameter(Mandatory=$true)]
+        [hashtable]$Data
+    )
+
+    Write-Verbose "Path: $Path"
+    $Data.GetEnumerator() | ForEach-Object {
+        Write-Verbose "Name: $($_.Key), Data: $($_.Value)"
+    }
+
+    if (-Not (Test-Path -Path $Path)) {
+        # Create Registry Path
+        New-Item -Path $RegistryPath -Force
+        $Data.GetEnumerator() | ForEach-Object {
+            New-ItemProperty -Path $Path -Name $_.Key -Value $_.Value
+        }
+    } else {
+        if ($Path.GetValueNames() -notcontains $_.Key) {
+            $Data.GetEnumerator() | ForEach-Object {
+                New-ItemProperty -Path $Path -Name $_.Key -Value $_.Value
+            }
+        } else {
+            $Data.GetEnumerator() | ForEach-Object {
+                Set-ItemProperty -Path $Path -Name $_.Key -Value $_.Value
+            }
+        }
+    }
 }
 
 function Set-Priority {
@@ -71,74 +105,31 @@ function Set-Priority {
 
     function Set-Priority-Low {
         Write-Host 'Set GENSHIN IMPACT Priority Low' -ForegroundColor Cyan
-        $LowPriority.GetEnumerator() | ForEach-Object {
-            Write-Host "Set Item Property: $($_.Key), $($_.Value)"
-            Set-ItemProperty `
-            -Path $PriorityPath `
-            -Name $_.Key `
-            -Value $_.Value
-        }
+        Set-Registry-Data -Path $RegistryPath -Data $LowPriority
         Write-Host 'Set GENSHIN IMPACT Priority Low Complete' -ForegroundColor Green
     }
 
     function Set-Priority-BelowNormal {
         Write-Host 'Set GENSHIN IMPACT Priority Below Normal' -ForegroundColor Cyan
-        $BelowNormalPriority.GetEnumerator() | ForEach-Object {
-            Write-Host "Set Item Property: $($_.Key), $($_.Value)"
-            Set-ItemProperty `
-            -Path $PriorityPath `
-            -Name $_.Key `
-            -Value $_.Value
-        }
+        Set-Registry-Data -Path $RegistryPath -Data $BelowNormalPriority
         Write-Host 'Set GENSHIN IMPACT Priority Below Normal Complete' -ForegroundColor Green
     }
 
     function Set-Priority-Normal {
         Write-Host 'Set GENSHIN IMPACT Priority Normal' -ForegroundColor Cyan
-        $NormalPriority.GetEnumerator() | ForEach-Object {
-            Write-Host "Set Item Property: $($_.Key), $($_.Value)"
-            Set-ItemProperty `
-            -Path $PriorityPath `
-            -Name $_.Key `
-            -Value $_.Value
-        }
+        Set-Registry-Data -Path $RegistryPath -Data $NormalPriority
         Write-Host 'Set GENSHIN IMPACT Priority Normal Complete' -ForegroundColor Green
     }
 
     function Set-Priority-AboveNormal {
         Write-Host 'Set GENSHIN IMPACT Priority Above Normal' -ForegroundColor Cyan
-        $AboveNormalPriority.GetEnumerator() | ForEach-Object {
-            Write-Host "Set Item Property: $($_.Key), $($_.Value)"
-            Set-ItemProperty `
-            -Path $PriorityPath `
-            -Name $_.Key `
-            -Value $_.Value
-        }
+        Set-Registry-Data -Path $RegistryPath -Data $AboveNormalPriority
         Write-Host 'Set GENSHIN IMPACT Priority Above Normal Complete' -ForegroundColor Green
     }
 
     function Set-Priority-High {
         Write-Host 'Set GENSHIN IMPACT Priority High' -ForegroundColor Cyan
-        $Name = 'CpuPriorityClass'
-        if (-Not (Test-Path -Path $PriorityPath)) {
-            $HighPriority.GetEnumerator() | ForEach-Object {
-                Write-Host "New Item Property: $($_.Key), $($_.Value)"
-                New-ItemProperty `
-                -Path $PriorityPath `
-                -Name $_.Key `
-                -Value $_.Value
-            }
-        } else {
-            Write-Host "Path: $PriorityPath" -ForegroundColor Cyan
-            New-Item -Path $PriorityPath -Force
-            $HighPriority.GetEnumerator() | ForEach-Object {
-                Write-Host "New Item Property: $($_.Key), $($_.Value)"
-                New-ItemProperty `
-                -Path $PriorityPath `
-                -Name $_.Key `
-                -Value $_.Value
-            }
-        }
+        Set-Registry-Data -Path $RegistryPath -Data $HighPriority
         Write-Host 'Set GENSHIN IMPACT Priority High Complete' -ForegroundColor Green
     }
 
