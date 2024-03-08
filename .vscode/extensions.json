@@ -2,6 +2,7 @@
     "recommendations": [
         "ms-vscode-remote.remote-wsl",
         "dbaeumer.vscode-eslint",
+        "ms-vscode.powershell",
         "ms-python.autopep8",
         "ms-python.black-formatter",
         "ms-python.python",
