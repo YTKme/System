@@ -13,11 +13,8 @@ GRANT USAGE ON *.* TO 'user'@'somehost' WITH GRANT OPTION;
 # https://dev.mysql.com/doc/refman/8.0/en/charset-charsets.html
 SHOW CHARACTER SET;
 
-<<<<<<< HEAD
 FLUSH PRIVILEGES;
 
-=======
->>>>>>> 50b17d8 (Update structure for repository)
 ##############
 # phpMyAdmin #
 ##############
@@ -44,8 +41,4 @@ define( 'FS_METHOD', 'direct' );
 #########
 
 # https://javierjulio.com/rbenv/
-<<<<<<< HEAD
 echo 'eval "$(rbenv init -)"' >> ~/.bash_profile
-=======
-echo 'eval "$(rbenv init -)"' >> ~/.bash_profile
->>>>>>> 50b17d8 (Update structure for repository)
