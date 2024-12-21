@@ -1,10 +1,10 @@
 {
     "$help": "https://aka.ms/terminal-documentation",
     "$schema": "https://aka.ms/terminal-profiles-schema",
-    "actions": 
+    "actions":
     [
         {
-            "command": 
+            "command":
             {
                 "action": "copy",
                 "singleLine": false
@@ -23,7 +23,7 @@
             "keys": "ctrl+shift+f"
         },
         {
-            "command": 
+            "command":
             {
                 "action": "splitPane",
                 "split": "auto",
@@ -36,16 +36,16 @@
     "copyFormatting": "none",
     "copyOnSelect": false,
     "defaultProfile": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
-    "newTabMenu": 
+    "newTabMenu":
     [
         {
             "type": "remainingProfiles"
         }
     ],
-    "profiles": 
+    "profiles":
     {
         "defaults": {},
-        "list": 
+        "list":
         [
             {
                 "commandline": "%SystemRoot%\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
@@ -88,9 +88,9 @@
                 "antialiasingMode": "grayscale",
                 "closeOnExit": "automatic",
                 "colorScheme": "Campbell",
-                "commandline": "wt --window 0 new-tab --title \"Onigiri\" --profile \"Windows PowerShell\" --startingDirectory \"C:\\Users\\Aries\\Desktop\\Project\\Repository\\W\\Web-Onigiri\"; split-pane --vertical --duplicate; split-pane --horizontal --duplicate; move-focus first",
+                "commandline": "wt --window 0 new-tab --title \"Onigiri\" --profile \"Windows PowerShell\" --startingDirectory \"%USERPROFILE%\\Desktop\"; split-pane --vertical --duplicate; split-pane --horizontal --duplicate; move-focus first",
                 "cursorShape": "bar",
-                "font": 
+                "font":
                 {
                     "face": "Cascadia Mono",
                     "size": 12
